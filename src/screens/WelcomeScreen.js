@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 import {
   mainViewStyles,
   imageStyles,
@@ -58,9 +57,5 @@ class WelcomeScreen extends Component {
     );
   }
 };
-
-const Navigator = StackNavigator({
-  welcome: { screen: WelcomeScreen },
-});
 
 export default WelcomeScreen;
