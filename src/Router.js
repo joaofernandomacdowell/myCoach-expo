@@ -7,7 +7,8 @@ import Welcome from './components/presentation/Welcome';
 
 
 const Router = StackNavigator({
-  presentation: { screen: Welcome },
+  welcome: { screen: WelcomeScreen },
+  question: { screen: QuestionScreen },
 });
 
 export default Router;
