@@ -1,14 +1,24 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
 import Welcome from '../components/presentation/Welcome';
 
 
 class WelcomeScreen extends Component {
   render() {
     return (
-      <Welcome />
+      <View style={styles.container}>
+        <Welcome />
+      </View>
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#153041'
+  }
+});
+
 
 export default WelcomeScreen;

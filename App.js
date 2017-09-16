@@ -12,7 +12,7 @@ export default class App extends React.Component {
     const MainNavigator = StackNavigator({
       presentation: { screen: WelcomeScreen },
       question: { screen: QuestionScreen }
-    });
+    }, { headerMode: 'none' });
 
     return (
       <View style={styles.container}>
