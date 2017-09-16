@@ -1,24 +1,66 @@
 import React, { Component } from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import Welcome from '../components/presentation/Welcome';
+import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+import {
+  mainViewStyles,
+  imageStyles,
+  loginButtonStyles,
+  startButtonStyles
+} from '../styles/presentation';
+
+import WelcomeText from '../components/presentation/WelcomeText';
+import ButtonSection from '../components/presentation/ButtonSection';
 
 
 class WelcomeScreen extends Component {
+  constructor(props) {
+    super(props);
+  }
+
   render() {
+    const { image } = imageStyles;
+    const { container } = mainViewStyles;
+    const { loginButton, loginText } = loginButtonStyles;
+    const { startButton, startText } = startButtonStyles;
+    const { navigate } = this.props.navigation;
+
     return (
-      <View style={styles.container}>
-        <Welcome />
+      <View style={[container, { backgroundColor: '#153041' }]}>
+        <View>
+          <Image
+            style={image}
+            source={require('../../resources/img/mycoach-logo.png')}
+            resizeMode="contain"
+          />
+        </View>
+
+        <WelcomeText>
+          myCoach helps you achieve a healthy lifestyle!
+        </WelcomeText>
+
+        <ButtonSection>
+          <TouchableOpacity
+            onPress={() => navigate('question')}
+            style={startButton}
+          >
+            <Text style={startText}>
+              START NOW
+            </Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={loginButton}>
+            <Text style={loginText}>
+              LOG IN
+            </Text>
+          </TouchableOpacity>
+        </ButtonSection>
       </View>
     );
   }
-}
+};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#153041'
-  }
+const Navigator = StackNavigator({
+  welcome: { screen: WelcomeScreen },
 });
-
 
 export default WelcomeScreen;
