@@ -1,11 +1,22 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
+import WelcomeScreen from './src/screens/WelcomeScreen';
+import QuestionScreen from './src/screens/QuestionScreen';
+
 
 export default class App extends React.Component {
   render() {
+    // rot TabNavigator
+    const MainNavigator = StackNavigator({
+      presentation: { screen: WelcomeScreen },
+      question: { screen: QuestionScreen }
+    });
+
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
+        <MainNavigator />
       </View>
     );
   }
@@ -14,8 +25,6 @@ export default class App extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
+    backgroundColor: '#153041'
+  }
 });

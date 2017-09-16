@@ -1,0 +1,52 @@
+[
+  {
+    "id": 0,
+    "type": "gender",
+    "quest": "Are you...",
+    "opts": [
+      "MALE",
+      "FEMALE"
+    ]
+  },
+  {
+    "id": 1,
+    "type": "shape",
+    "quest": "How do you consider yourself?",
+    "opts": [
+      "TOTALLY IN SHAPE",
+      "IN SHAPE",
+      "OUT OF SHAPE"
+    ]
+  },
+  {
+    "id": 2,
+    "type": "objective",
+    "quest": "What is your main objective?",
+    "opts": [
+      "PHYSICAL HEALTH",
+      "STRENGTHENING",
+      "WEIGHT LOSS",
+      "PSYCHOLOGICAL HEALTH"
+    ]
+  },
+  {
+    "id": 3,
+    "type": "badHabits",
+    "quest": "Do you have any bad habits?",
+    "opts": [
+      "I'M A SMOKER",
+      "I'M A FAST FOOD ADDICT",
+      "I'M LAZY",
+      "I SKIP MEALS"
+    ]
+  },
+  {
+    "id": 4,
+    "type": "time",
+    "quest": "How much time do you want to invest in workout daily?",
+    "opts": [
+      "30-60 MINUTES",
+      "60-120 MINUTES"
+    ]
+  }
+]
