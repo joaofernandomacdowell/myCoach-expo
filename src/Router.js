@@ -1,15 +1,14 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import RegisterForm from './components/startnow/RegisterForm';
-import QuestionSection from './components/startnow/QuestionSection';
-import Welcome from './components/presentation/Welcome';
-
+// import RegisterForm from './components/startnow/RegisterForm';
+import QuestionScreen from './screens/QuestionScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
 
 const Router = StackNavigator({
   welcome: { screen: WelcomeScreen },
-  question: { screen: QuestionScreen },
-});
+  question: { screen: QuestionScreen }
+}, { headerMode: 'none' });
 
 export default Router;
 

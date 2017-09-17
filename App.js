@@ -1,23 +1,33 @@
 import React, { Component } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { StackNavigator } from 'react-navigation';
+import { Provider } from 'react-redux';
+import { createStore, applyMiddleware } from 'redux';
+import reducers from './src/reducers';
+import firebase from 'firebase';
+import ReduxThunk from 'redux-thunk';
+import { firebaseConfig } from './firebaseConfig';
 
-import WelcomeScreen from './src/screens/WelcomeScreen';
-import QuestionScreen from './src/screens/QuestionScreen';
+import Router from './src/Router';
 
 
 export default class App extends Component {
-  render() {
-    // rot TabNavigator
-    const MainNavigator = StackNavigator({
-      welcome: { screen: WelcomeScreen },
-      question: { screen: QuestionScreen }
-    }, { headerMode: 'none' });
+  constructor(props) {
+    super(props);
+  }
 
+  componentWillMount() {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+  }
+
+  render() {
+    const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
-      <View style={styles.container}>
-        <MainNavigator />
-      </View>
+      <Provider store={store}>
+        <Router />
+      </Provider>
     );
   }
 }

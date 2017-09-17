@@ -1,19 +1,22 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+
+import QuestionSection from '../components/startnow/QuestionSection';
 
 
 class QuestionScreen extends Component {
   render() {
     return (
-      <View>
-        <Text>QuestionScreen</Text>
-        <Text>QuestionScreen</Text>
-        <Text>QuestionScreen</Text>
-        <Text>QuestionScreen</Text>
-        <Text>QuestionScreen</Text>
-      </View>
+      <QuestionSection />
     );
   }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#153041'
+  }
+});
 
 export default QuestionScreen;
