@@ -30,26 +30,27 @@ const cardSectionStyles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'flex-start',
-    padding: 5,
+    paddingBottom: 5,
     position: 'relative'
   }
 });
 
 // Input styles
 const inputStyles = StyleSheet.create({
-  inputStyle: {
+  input: {
     color: Colors.lightGrey,
     flex: 1,
-    fontSize: 18,
+    fontSize: 16,
     lineHeight: 23,
     paddingLeft: 5,
     paddingRight: 5
   },
-  containerStyle: {
-    alignItems: 'center',
-    flex: 1,
-    flexDirection: 'row',
-    height: 40
+  label: {
+    fontSize: 18,
+    fontWeight: '200'
+  },
+  container: {
+    paddingTop: 10
   }
 });
 

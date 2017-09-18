@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { ScreenStyles } from '../styles/constants';
+import { FormLabel, FormInput } from 'react-native-elements';
 import {
   emailChanged,
   passwordChanged,
@@ -10,6 +11,7 @@ import {
   firstNameChanged,
   lastNameChanged
 } from '../actions';
+import { inputStyles } from '../styles/common';
 
 import {
   Card,
@@ -66,43 +68,45 @@ class RegisterScreen extends Component {
   }
 
   render() {
+    const { label, input, container } = inputStyles;
+
     return (
       <View style={ScreenStyles}>
         <LargeText>Register with Email</LargeText>
 
         <Card>
           {/* First Name */}
+          <FormLabel labelStyle={label}>First Name</FormLabel>
           <CardSection>
-            <Input
-              placeholder="First Name"
+            <FormInput containerStyle={container} inputStyle={input}
               onChangeText={this._onFirstNameChange}
               value={this.props.firstName}
             />
           </CardSection>
 
           {/* Last Name */}
+          <FormLabel labelStyle={label}>Last Name</FormLabel>
           <CardSection>
-            <Input
-              placeholder="Last Name"
+            <FormInput containerStyle={container} inputStyle={input}
               onChangeText={this._onLastNameChange}
               value={this.props.lastName}
             />
           </CardSection>
 
           {/* Email */}
+          <FormLabel labelStyle={label}>Email</FormLabel>
           <CardSection>
-            <Input
-              placeholder="Email"
+            <FormInput containerStyle={container} inputStyle={input}
               onChangeText={this._onEmailChange}
               value={this.props.email}
             />
           </CardSection>
 
           {/* Password */}
+          <FormLabel labelStyle={label}>Password</FormLabel>
           <CardSection>
-            <Input
+            <FormInput containerStyle={container} inputStyle={input}
               secureTextEntry
-              placeholder="Password"
               onChangeText={this._onPasswordChange}
               value={this.props.password}
             />
