@@ -5,3 +5,8 @@ export const Colors = {
   darkBlue: '#153041',
   darkGreen: '#1d3e53'
 };
+
+export const ScreenStyles = {
+  backgroundColor: Colors.darkBlue,
+  flex: 1
+};

@@ -4,7 +4,6 @@ import { Colors } from './constants.js';
 // View styles
 const mainViewStyles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'column',
     justifyContent: 'space-between'
   }

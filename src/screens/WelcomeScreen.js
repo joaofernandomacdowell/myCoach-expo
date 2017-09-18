@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
+import { ScreenStyles } from '../styles/constants';
 import {
   mainViewStyles,
   imageStyles,
@@ -24,7 +25,7 @@ class WelcomeScreen extends Component {
     const { navigate } = this.props.navigation;
 
     return (
-      <View style={[container, { backgroundColor: '#153041' }]}>
+      <View style={[ScreenStyles, container]}>
         <View>
           <Image
             style={image}
