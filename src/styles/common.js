@@ -18,10 +18,9 @@ const largeTextStyles = StyleSheet.create({
 // Card styles
 const cardStyles = StyleSheet.create({
   container: {
-    elevation: 1,
     marginLeft: 5,
     marginRight: 5,
-    marginTop: 150
+    marginTop: 60
   }
 });
 
@@ -89,7 +88,7 @@ const errorMessageStyles = StyleSheet.create({
   text: {
     fontSize: 16,
     alignSelf: 'center',
-    color: 'red'
+    color: Colors.lightRed
   }
 });
 
