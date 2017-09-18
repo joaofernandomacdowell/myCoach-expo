@@ -16,7 +16,8 @@ import {
   CardSection,
   Button,
   Input,
-  ErrorMessage
+  ErrorMessage,
+  LargeText
 } from '../components/common';
 
 
@@ -67,6 +68,8 @@ class RegisterScreen extends Component {
   render() {
     return (
       <View style={ScreenStyles}>
+        <LargeText>Register with Email</LargeText>
+
         <Card>
           {/* First Name */}
           <CardSection>
