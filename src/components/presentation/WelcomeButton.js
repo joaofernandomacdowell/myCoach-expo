@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, TouchableOpacity } from 'react-native';
-import { initialButtonStyles } from '../../styles/presentation';
+import { initialButtonStyles } from '../../styles/welcome';
 
 const WelcomeButton = ({ children, onPress }) => {
   const { button, text } = initialButtonStyles;

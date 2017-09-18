@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text } from 'react-native';
-import { presentationTextStyles } from '../../styles/presentation';
+import { presentationTextStyles } from '../../styles/welcome';
 
 const WelcomeText = ({ children }) => {
   const { container, text } = presentationTextStyles;
