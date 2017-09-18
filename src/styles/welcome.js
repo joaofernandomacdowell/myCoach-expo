@@ -36,7 +36,7 @@ const presentationTextStyles = StyleSheet.create({
   }
 });
 
-// ButtonSection
+// ButtonContainer
 const buttonSectionStyles = StyleSheet.create({
   container: {
     alignItems: 'center',

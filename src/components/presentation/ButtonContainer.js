@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { buttonSectionStyles } from '../../styles/welcome';
 
-const ButtonSection = ({ children }) => {
+const ButtonContainer = ({ children }) => {
   const { container } = buttonSectionStyles;
 
   return (
@@ -12,4 +12,4 @@ const ButtonSection = ({ children }) => {
   );
 };
 
-export default ButtonSection;
+export default ButtonContainer;

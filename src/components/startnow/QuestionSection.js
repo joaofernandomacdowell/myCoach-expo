@@ -3,7 +3,7 @@ import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { updateQuestionAndOptions, updateProfile } from '../../actions';
 
-import Welcome from './Welcome';
+import { LargeText } from '../common';
 import Question from './Question';
 import Option from './Option';
 import ButtonOption from './ButtonOption';
@@ -37,16 +37,16 @@ class QuestionSection extends Component {
     );
   }
 
-  _renderWelcome() {
+  _renderLargeText() {
     return this.props.id === 0
-    ? <Welcome>Welcome to myCoach!</Welcome>
-    : <Welcome style={{ marginTop: 100 }}></Welcome>;
+    ? <LargeText>Welcome to myCoach!</LargeText>
+    : <LargeText style={{ marginTop: 100 }}></LargeText>;
   }
 
   render() {
     return (
       <View style={{ flex: 1 }}>
-        {this._renderWelcome()}
+        {this._renderLargeText()}
         <Question questionText={this.props.question} />
         <Option>
           {this._renderOptions()}

@@ -1,6 +1,20 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from './constants.js';
 
+// LargeText styles
+const largeTextStyles = StyleSheet.create({
+  container: {
+    alignSelf: 'center',
+    justifyContent: 'center',
+    marginTop: 100
+  },
+  text: {
+    color: Colors.lightGrey,
+    fontSize: 28,
+    textAlign: 'center'
+  }
+});
+
 // Card styles
 const cardStyles = StyleSheet.create({
   container: {
@@ -80,6 +94,7 @@ const errorMessageStyles = StyleSheet.create({
 });
 
 export {
+  largeTextStyles,
   cardStyles,
   cardSectionStyles,
   inputStyles,

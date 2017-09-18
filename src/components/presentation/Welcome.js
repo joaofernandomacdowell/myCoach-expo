@@ -9,7 +9,7 @@ import {
 
 import { CardSection } from '../common';
 import WelcomeText from './WelcomeText';
-import ButtonSection from './ButtonSection';
+import ButtonContainer from './ButtonContainer';
 
 
 class Welcome extends Component {
@@ -37,7 +37,7 @@ class Welcome extends Component {
           myCoach helps you achieve a healthy lifestyle!
         </WelcomeText>
 
-        <ButtonSection>
+        <ButtonContainer>
           <TouchableOpacity
             onPress={this.props.onStartnow}
             style={startButton}
@@ -55,7 +55,7 @@ class Welcome extends Component {
               LOG IN
             </Text>
           </TouchableOpacity>
-        </ButtonSection>
+        </ButtonContainer>
       </View>
     );
   }

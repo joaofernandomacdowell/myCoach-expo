@@ -1,20 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { Colors } from './constants.js';
 
-// Welcome styles
-const welcomeStyles = StyleSheet.create({
-  container: {
-    alignSelf: 'center',
-    justifyContent: 'center',
-    marginTop: 100
-  },
-  text: {
-    color: Colors.lightGrey,
-    fontSize: 28,
-    textAlign: 'center'
-  }
-});
-
 // Question styles
 const questionStyles = StyleSheet.create({
   container: {
@@ -63,4 +49,4 @@ const buttonOptionStyles = StyleSheet.create({
   }
 });
 
-export { questionStyles, optionStyles, buttonOptionStyles, welcomeStyles };
+export { questionStyles, optionStyles, buttonOptionStyles };

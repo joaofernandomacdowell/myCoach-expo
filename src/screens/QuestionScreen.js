@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { updateQuestionAndOptions, updateProfile } from '../actions';
 import { ScreenStyles } from '../styles/constants';
 
-import Welcome from '../components/startnow/Welcome';
+import { LargeText } from '../components/common/';
 import Question from '../components/startnow/Question';
 import Option from '../components/startnow/Option';
 import ButtonOption from '../components/startnow/ButtonOption';
@@ -40,16 +40,16 @@ class QuestionScreen extends Component {
     );
   }
 
-  _renderWelcome() {
+  _renderLargeText() {
     return this.props.id === 0
-    ? <Welcome>Welcome to myCoach!</Welcome>
-    : <Welcome style={{ marginTop: 100 }}></Welcome>;
+    ? <LargeText>Welcome to myCoach!</LargeText>
+    : <LargeText style={{ marginTop: 100 }}></LargeText>;
   }
 
   render() {
     return (
       <View style={ScreenStyles}>
-        {this._renderWelcome()}
+        {this._renderLargeText()}
         <Question questionText={this.props.question} />
         <Option>
           {this._renderOptions()}
