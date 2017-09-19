@@ -22,7 +22,7 @@ export const passwordChanged = (text) => {
   };
 };
 
-export const loginUser = ({ email, password, name, profile }) => {
+export const createUser = ({ email, password, name, profile }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
@@ -30,7 +30,7 @@ export const loginUser = ({ email, password, name, profile }) => {
       .then(user => saveNameAndProfile(name, profile))
       .catch((error) => {
         console.log(error);
-        loginUserFail(dispatch, error.message)
+        createUserFail(dispatch, error.message)
       });
   };
 };
@@ -46,6 +46,6 @@ const saveNameAndProfile = (name, profile) => {
 };
 
 // Helper (FAIL)
-const loginUserFail = (dispatch, errorMessage) => {
+const createUserFail = (dispatch, errorMessage) => {
   dispatch({ type: LOGIN_USER_FAIL, payload: errorMessage });
 };

@@ -6,7 +6,7 @@ import { FormLabel, FormInput } from 'react-native-elements';
 import {
   emailChanged,
   passwordChanged,
-  loginUser,
+  createUser,
   createProfile,
   firstNameChanged,
   lastNameChanged
@@ -58,7 +58,7 @@ class RegisterScreen extends Component {
     const { email, password, profile, firstName, lastName } = this.props;
     const name = `${firstName} ${lastName}`;
 
-    this.props.loginUser({ email, password, name, profile });
+    this.props.createUser({ email, password, name, profile });
   }
 
   _renderErrorMessage() {
@@ -136,6 +136,6 @@ export default connect(mapStateToProps, {
   passwordChanged,
   firstNameChanged,
   lastNameChanged,
-  loginUser,
+  createUser,
   createProfile
 })(RegisterScreen);
