@@ -7,16 +7,11 @@ import {
   startButtonStyles
 } from '../../styles/welcome';
 
-import { CardSection } from '../common';
 import WelcomeText from './WelcomeText';
 import ButtonContainer from './ButtonContainer';
 
 
 class Welcome extends Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     const { image } = imageStyles;
     const { container } = mainViewStyles;
