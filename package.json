@@ -4,6 +4,9 @@
   "description": "Hello Expo!",
   "author": null,
   "private": true,
+  "scripts": {
+    "devtools": "react-devtools"
+  },
   "main": "node_modules/expo/AppEntry.js",
   "dependencies": {
     "expo": "^20.0.0",
