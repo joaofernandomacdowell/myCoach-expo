@@ -1,16 +1,23 @@
 import React from 'react';
-import { Text, TouchableOpacity } from 'react-native';
+import { ButtonGroup } from 'react-native-elements';
 import { buttonOptionStyles } from '../../styles/startnow';
+import { Colors } from '../../styles/constants';
+
 
 const ButtonOption = (props) => {
-  const { button, text } = buttonOptionStyles;
+  const { container, button, text } = buttonOptionStyles;
 
   return (
-    <TouchableOpacity onPress={props.onPress} style={button}>
-      <Text style={text}>
-        {props.children}
-      </Text>
-    </TouchableOpacity>
+    <ButtonGroup
+      buttons={props.buttons}
+      onPress={props.onSelect}
+      selectedIndex={props.selectedIndex}
+      containerStyle={container}
+      buttonStyle={button}
+      textStyle={text}
+      selectedBackgroundColor={Colors.lightGreen}
+      selectedTextStyle={{ color: Colors.darkBlue }}
+    />
   );
 };
 

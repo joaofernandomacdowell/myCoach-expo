@@ -13,46 +13,42 @@ import ButtonOption from '../components/startnow/ButtonOption';
 class QuestionScreen extends Component {
   constructor(props) {
     super(props);
+
+    this.state = { selectedOption: 1 };
   }
 
-  _onPress(index) {
-    debugger;
+  onButtonPress = (selectedIndex) => {
     const { type, options, id } = this.props;
-    const selectedOption = options[index].toLowerCase();
-    console.log("this.props: ", this.props);
-
+    const selectedOption = options[selectedIndex].toLowerCase();
+    
     if (id !== 4) {
       this.props.updateProfile({ type, selectedOption });
       this.props.updateQuestionAndOptions();
-
     } else {
       this.props.updateProfile({ type, selectedOption });
       this.props.navigation.navigate('register');
     }
   }
 
-  _renderOptions() {
-    const { options } = this.props;
-    return options.map((option, index) =>
-      <ButtonOption key={index} onPress={this._onPress.bind(this, index)}>
-        {option}
-      </ButtonOption>
-    );
-  }
-
-  _renderLargeText() {
+  renderLargeText() {
     return this.props.id === 0
     ? <LargeText>Welcome to myCoach!</LargeText>
-    : <LargeText style={{ marginTop: 100 }}></LargeText>;
+    : <LargeText style={{ marginTop: 100 }} />;
   }
 
   render() {
+    const { question, options } = this.props;
+
     return (
       <View style={ScreenStyles}>
-        {this._renderLargeText()}
-        <Question questionText={this.props.question} />
+        {this.renderLargeText()}
+        <Question questionText={question} />
         <Option>
-          {this._renderOptions()}
+          <ButtonOption
+            buttons={options}
+            onSelect={this.onButtonPress}
+            selectedIndex={this.state.selectedIndex}
+          />
         </Option>
       </View>
     );

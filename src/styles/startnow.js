@@ -1,5 +1,8 @@
-import { StyleSheet } from 'react-native';
+import { Dimensions, StyleSheet } from 'react-native';
 import { Colors } from './constants.js';
+
+const SCREEN_WIDTH = Dimensions.get('window').width;
+const SCREEN_HEIGHT = Dimensions.get('window').height;
 
 // Question styles
 const questionStyles = StyleSheet.create({
@@ -19,6 +22,8 @@ const questionStyles = StyleSheet.create({
 // Option styles
 const optionStyles = StyleSheet.create({
   container: {
+    borderWidth: 1,
+    borderColor: 'red',
     width: 300,
     height: 300,
     alignSelf: 'center',
@@ -28,8 +33,15 @@ const optionStyles = StyleSheet.create({
   }
 });
 
-// Button styles
+// ButtonOption styles
 const buttonOptionStyles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+    backgroundColor: Colors.darkBlue,
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'space-around'
+  },
   text: {
     color: Colors.lightGrey,
     fontSize: 16,
@@ -42,8 +54,8 @@ const buttonOptionStyles = StyleSheet.create({
     borderRadius: 2,
     borderWidth: 1,
     borderColor: Colors.lightGreen,
-    height: 50,
-    width: 250,
+    height: SCREEN_HEIGHT * 0.25,
+    width: SCREEN_WIDTH * 0.7,
     marginTop: 10,
     marginBottom: 10
   }
