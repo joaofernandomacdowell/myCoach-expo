@@ -3,8 +3,6 @@ import {
 } from './types';
 
 // props (this.props.selectOption)
-export const updateQuestionAndOptions = () => {
-  return {
-    type: SELECTED_OPTION
-  };
-};
+export const updateQuestionAndOptions = () => ({
+  type: SELECTED_OPTION
+});

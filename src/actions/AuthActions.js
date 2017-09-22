@@ -1,39 +1,33 @@
-import { Alert } from 'react-native';
 import firebase from 'firebase';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
-  LOGIN_USER_SUCCESS,
   LOGIN_USER,
   LOGIN_USER_FAIL
 } from './types';
 
-export const emailChanged = (text) => {
-  return {
-    type: EMAIL_CHANGED,
-    payload: text
-  };
-};
+export const emailChanged = (text) => ({
+  type: EMAIL_CHANGED,
+  payload: text
+});
 
-export const passwordChanged = (text) => {
-  return {
-    type: PASSWORD_CHANGED,
-    payload: text
-  };
-};
+export const passwordChanged = (text) => ({
+  type: PASSWORD_CHANGED,
+  payload: text
+});
 
-export const createUser = ({ email, password, name, profile }) => {
-  return (dispatch) => {
+export const createUser = ({ email, password, name, profile }) => (
+  (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then(user => saveNameAndProfile(name, profile))
+      .then(() => saveNameAndProfile(name, profile))
       .catch((error) => {
         console.log(error);
-        createUserFail(dispatch, error.message)
+        createUserFail(dispatch, error.message);
       });
-  };
-};
+  }
+);
 
 // TODO: add catch statment in saveNameAndProfile Promise
 const saveNameAndProfile = (name, profile) => {

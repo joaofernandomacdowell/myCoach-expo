@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { View, Alert } from 'react-native';
+import React from 'react';
+import { View } from 'react-native';
 import { optionStyles } from '../../styles/startnow';
 
 
@@ -7,7 +7,7 @@ const Option = (props) => {
   const { container } = optionStyles;
 
   return (
-    <View style={optionStyles.container}>
+    <View style={container}>
       {props.children}
     </View>
   );
