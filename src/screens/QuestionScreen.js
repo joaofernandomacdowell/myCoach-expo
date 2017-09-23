@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
 import { updateQuestionAndOptions, updateProfile } from '../actions';
-import { ScreenStyles } from '../styles/constants';
+import { ScreenStyles, Colors } from '../styles/constants';
 
 import { LargeText } from '../components/common/';
 import Question from '../components/startnow/Question';
-import Option from '../components/startnow/Option';
 import ButtonOption from '../components/startnow/ButtonOption';
 
 
@@ -14,7 +13,7 @@ class QuestionScreen extends Component {
   constructor(props) {
     super(props);
 
-    this.state = { selectedOption: 1 };
+    this.state = { selectedButton: null };
   }
 
   onButtonPress = (selectedIndex) => {
@@ -43,13 +42,13 @@ class QuestionScreen extends Component {
       <View style={ScreenStyles}>
         {this.renderLargeText()}
         <Question questionText={question} />
-        <Option>
           <ButtonOption
             buttons={options}
             onSelect={this.onButtonPress}
-            selectedIndex={this.state.selectedIndex}
+            selectedIndex={this.state.selectedButton}
+            selectedBackgroundColor={Colors.lightGreen}
+            selectedTextStyle={{ color: Colors.darkBlue }}
           />
-        </Option>
       </View>
     );
   }

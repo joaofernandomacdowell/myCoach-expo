@@ -17,6 +17,7 @@ const ButtonOption = (props) => {
       textStyle={text}
       selectedBackgroundColor={Colors.lightGreen}
       selectedTextStyle={{ color: Colors.darkBlue }}
+      underlayColor='transparent'
     />
   );
 };

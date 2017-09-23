@@ -37,10 +37,21 @@ const optionStyles = StyleSheet.create({
 const buttonOptionStyles = StyleSheet.create({
   container: {
     alignItems: 'center',
+    borderWidth: 0,
     backgroundColor: Colors.darkBlue,
-    flex: 1,
     flexDirection: 'column',
-    justifyContent: 'space-around'
+    height: SCREEN_HEIGHT * 0.6,
+    justifyContent: 'center',
+    marginTop: 30
+  },
+  button: {
+    borderRadius: 2,
+    borderWidth: 1,
+    borderColor: Colors.lightGreen,
+    height: SCREEN_HEIGHT * 0.2,
+    width: SCREEN_WIDTH * 0.8,
+    marginTop: 10,
+    marginBottom: 10
   },
   text: {
     color: Colors.lightGrey,
@@ -49,15 +60,6 @@ const buttonOptionStyles = StyleSheet.create({
     paddingBottom: 10,
     paddingTop: 13,
     textAlign: 'center'
-  },
-  button: {
-    borderRadius: 2,
-    borderWidth: 1,
-    borderColor: Colors.lightGreen,
-    height: SCREEN_HEIGHT * 0.25,
-    width: SCREEN_WIDTH * 0.7,
-    marginTop: 10,
-    marginBottom: 10
   }
 });
 
