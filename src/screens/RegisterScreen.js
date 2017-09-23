@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { FormLabel, FormInput } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { ScreenStyles } from '../styles/constants';
+import { inputStyles } from '../styles/common';
 import {
   emailChanged,
   passwordChanged,
@@ -11,7 +12,6 @@ import {
   firstNameChanged,
   lastNameChanged
 } from '../actions';
-import { inputStyles } from '../styles/common';
 
 import {
   Card,
@@ -23,37 +23,27 @@ import {
 
 
 class RegisterScreen extends Component {
-  constructor(props) {
-    super(props);
-
-    this.onEmailChange = this.onEmailChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.onButtonPress = this.onButtonPress.bind(this);
-    this.onFirstNameChange = this.onFirstNameChange.bind(this);
-    this.onLastNameChange = this.onLastNameChange.bind(this);
-  }
-
   componentDidMount() {
     console.log(this.props.profile);
   }
 
-  onEmailChange(text) {
+  onEmailChange = (text) => {
     this.props.emailChanged(text);
   }
 
-  onPasswordChange(text) {
+  onPasswordChange = (text) => {
     this.props.passwordChanged(text);
   }
 
-  onFirstNameChange(text) {
+  onFirstNameChange = (text) => {
     this.props.firstNameChanged(text);
   }
 
-  onLastNameChange(text) {
+  onLastNameChange = (text) => {
     this.props.lastNameChanged(text);
   }
 
-  onButtonPress() {
+  onButtonPress = () => {
     const { email, password, profile, firstName, lastName } = this.props;
     const name = `${firstName} ${lastName}`;
 
