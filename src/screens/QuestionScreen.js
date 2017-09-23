@@ -11,48 +11,41 @@ import ButtonOption from '../components/startnow/ButtonOption';
 
 
 class QuestionScreen extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  _onPress(index) {
-    debugger;
+  onPress(index) {
     const { type, options, id } = this.props;
     const selectedOption = options[index].toLowerCase();
-    console.log("this.props: ", this.props);
 
     if (id !== 4) {
       this.props.updateProfile({ type, selectedOption });
       this.props.updateQuestionAndOptions();
-
     } else {
       this.props.updateProfile({ type, selectedOption });
       this.props.navigation.navigate('register');
     }
   }
 
-  _renderOptions() {
+  renderOptions() {
     const { options } = this.props;
     return options.map((option, index) =>
-      <ButtonOption key={index} onPress={this._onPress.bind(this, index)}>
+      <ButtonOption key={index} onPress={this.onPress.bind(this, index)}>
         {option}
       </ButtonOption>
     );
   }
 
-  _renderLargeText() {
+  renderLargeText() {
     return this.props.id === 0
     ? <LargeText>Welcome to myCoach!</LargeText>
-    : <LargeText style={{ marginTop: 100 }}></LargeText>;
+    : <LargeText style={{ marginTop: 100 }} />;
   }
 
   render() {
     return (
       <View style={ScreenStyles}>
-        {this._renderLargeText()}
+        {this.renderLargeText()}
         <Question questionText={this.props.question} />
         <Option>
-          {this._renderOptions()}
+          {this.renderOptions()}
         </Option>
       </View>
     );

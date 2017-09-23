@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
+import { FormLabel, FormInput } from 'react-native-elements';
 import { connect } from 'react-redux';
 import { ScreenStyles } from '../styles/constants';
-import { FormLabel, FormInput } from 'react-native-elements';
 import {
   emailChanged,
   passwordChanged,
@@ -17,7 +17,6 @@ import {
   Card,
   CardSection,
   Button,
-  Input,
   ErrorMessage,
   LargeText
 } from '../components/common';
@@ -27,44 +26,44 @@ class RegisterScreen extends Component {
   constructor(props) {
     super(props);
 
-    this._onEmailChange = this._onEmailChange.bind(this);
-    this._onPasswordChange = this._onPasswordChange.bind(this);
-    this._onButtonPress = this._onButtonPress.bind(this);
-    this._onFirstNameChange = this._onFirstNameChange.bind(this);
-    this._onLastNameChange = this._onLastNameChange.bind(this);
+    this.onEmailChange = this.onEmailChange.bind(this);
+    this.onPasswordChange = this.onPasswordChange.bind(this);
+    this.onButtonPress = this.onButtonPress.bind(this);
+    this.onFirstNameChange = this.onFirstNameChange.bind(this);
+    this.onLastNameChange = this.onLastNameChange.bind(this);
   }
 
   componentDidMount() {
     console.log(this.props.profile);
   }
 
-  _onEmailChange(text) {
+  onEmailChange(text) {
     this.props.emailChanged(text);
   }
 
-  _onPasswordChange(text) {
+  onPasswordChange(text) {
     this.props.passwordChanged(text);
   }
 
-  _onFirstNameChange(text) {
+  onFirstNameChange(text) {
     this.props.firstNameChanged(text);
   }
 
-  _onLastNameChange(text) {
+  onLastNameChange(text) {
     this.props.lastNameChanged(text);
   }
 
-  _onButtonPress() {
+  onButtonPress() {
     const { email, password, profile, firstName, lastName } = this.props;
     const name = `${firstName} ${lastName}`;
 
     this.props.createUser({ email, password, name, profile });
   }
 
-  _renderErrorMessage() {
+  renderErrorMessage() {
     return this.props.error !== ''
     ? <ErrorMessage>{this.props.error}</ErrorMessage>
-    : null
+    : null;
   }
 
   render() {
@@ -78,8 +77,10 @@ class RegisterScreen extends Component {
           {/* First Name */}
           <FormLabel labelStyle={label}>First Name</FormLabel>
           <CardSection>
-            <FormInput containerStyle={container} inputStyle={input}
-              onChangeText={this._onFirstNameChange}
+            <FormInput
+              containerStyle={container}
+              inputStyle={input}
+              onChangeText={this.onFirstNameChange}
               value={this.props.firstName}
             />
           </CardSection>
@@ -87,8 +88,10 @@ class RegisterScreen extends Component {
           {/* Last Name */}
           <FormLabel labelStyle={label}>Last Name</FormLabel>
           <CardSection>
-            <FormInput containerStyle={container} inputStyle={input}
-              onChangeText={this._onLastNameChange}
+            <FormInput
+              containerStyle={container}
+              inputStyle={input}
+              onChangeText={this.onLastNameChange}
               value={this.props.lastName}
             />
           </CardSection>
@@ -96,8 +99,10 @@ class RegisterScreen extends Component {
           {/* Email */}
           <FormLabel labelStyle={label}>Email</FormLabel>
           <CardSection>
-            <FormInput containerStyle={container} inputStyle={input}
-              onChangeText={this._onEmailChange}
+            <FormInput
+              containerStyle={container}
+              inputStyle={input}
+              onChangeText={this.onEmailChange}
               value={this.props.email}
             />
           </CardSection>
@@ -105,30 +110,32 @@ class RegisterScreen extends Component {
           {/* Password */}
           <FormLabel labelStyle={label}>Password</FormLabel>
           <CardSection>
-            <FormInput containerStyle={container} inputStyle={input}
+            <FormInput
+              containerStyle={container}
+              inputStyle={input}
               secureTextEntry
-              onChangeText={this._onPasswordChange}
+              onChangeText={this.onPasswordChange}
               value={this.props.password}
             />
           </CardSection>
 
-          <Button onPress={this._onButtonPress}>
+          <Button onPress={this.onButtonPress}>
             Register
           </Button>
 
           {/* Error Message */}
-          {this._renderErrorMessage()}
+          {this.renderErrorMessage()}
         </Card>
       </View>
     );
   }
 }
 
-const mapStateToProps = ({ auth, optionSelected, userData }) => {
+const mapStateToProps = ({ auth, userData }) => {
   const { email, password, error, loading } = auth;
   const { profile, firstName, lastName } = userData;
 
-  return { email, password, error, loading, profile , firstName, lastName };
+  return { email, password, error, loading, profile, firstName, lastName };
 };
 
 export default connect(mapStateToProps, {
