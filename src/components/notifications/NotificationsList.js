@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { View, Text, ListView, StyleSheet } from 'react-native';
+import { ListView } from 'react-native';
 import { List, ListItem } from 'react-native-elements';
-import data from './sales.json';
+import { listStyles, listItemStyles } from '../../styles/notifications';
+import data from './example.json';
 
 
 class NotificationsList extends Component {
@@ -15,43 +16,25 @@ class NotificationsList extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(data),
     };
-
-    this.list = [
-      {
-        name: 'Amy Farha',
-        subtitle: 'Vice President'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
-      },
-      {
-        name: 'Chris Jackson',
-        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
-        subtitle: 'Vice Chairman'
-      }
-    ];
   }
 
-  renderRow(rowData, sectionID) {
+  renderRow(record) {
+    const { listItemContainer, title } = listItemStyles;
     return (
       <ListItem
-        key={sectionID}
-        title={rowData.name}
-        subtitle={rowData.subtitle}
+        key={record.id}
+        title={record.title}
+        titleStyle={title}
+        containerStyle={listItemContainer}
+        subtitle={record.subtitle}
       />
     );
   }
 
   render() {
+    const { mainContainer } = listStyles;
     return (
-      <List style={styles.mainContainer}>
+      <List style={mainContainer}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
@@ -60,68 +43,5 @@ class NotificationsList extends Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  mainContainer: {
-    flex: 1
-  },
-  title: {
-    backgroundColor: '#0f1b29',
-    color: '#fff',
-    fontSize: 18,
-    fontWeight: 'bold',
-    padding: 10,
-    paddingTop: 40,
-    textAlign: 'center',
-  },
-  row: {
-    borderColor: '#f1f1f1',
-    borderBottomWidth: 1,
-    flexDirection: 'row',
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  iconContainer: {
-    alignItems: 'center',
-    backgroundColor: '#feb401',
-    borderColor: '#feaf12',
-    borderRadius: 25,
-    borderWidth: 1,
-    justifyContent: 'center',
-    height: 50,
-    width: 50,
-  },
-  icon: {
-    tintColor: '#fff',
-    height: 22,
-    width: 22,
-  },
-  info: {
-    flex: 1,
-    paddingLeft: 25,
-    paddingRight: 25,
-  },
-  items: {
-    fontWeight: 'bold',
-    fontSize: 16,
-    marginBottom: 5,
-  },
-  address: {
-    color: '#ccc',
-    fontSize: 14,
-  },
-  total: {
-    width: 80,
-  },
-  date: {
-    fontSize: 12,
-    marginBottom: 5,
-  },
-  price: {
-    color: '#1cad61',
-    fontSize: 25,
-    fontWeight: 'bold',
-  },
-});
 
 export default NotificationsList;
