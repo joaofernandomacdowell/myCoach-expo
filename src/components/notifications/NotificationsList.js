@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { View, Text, ListView, StyleSheet } from 'react-native';
+import { List, ListItem } from 'react-native-elements';
 import data from './sales.json';
 
 
@@ -14,32 +15,48 @@ class NotificationsList extends Component {
     this.state = {
       dataSource: ds.cloneWithRows(data),
     };
+
+    this.list = [
+      {
+        name: 'Amy Farha',
+        subtitle: 'Vice President'
+      },
+      {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
+      },
+      {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
+      },
+      {
+        name: 'Chris Jackson',
+        avatar_url: 'https://s3.amazonaws.com/uifaces/faces/twitter/adhamdannaway/128.jpg',
+        subtitle: 'Vice Chairman'
+      }
+    ];
   }
 
-  renderRow(record) {
+  renderRow(rowData, sectionID) {
     return (
-      <View style={styles.row}>
-        <View style={styles.info}>
-          <Text style={styles.items}>{record.items} Items</Text>
-          <Text style={styles.address}>{record.address}</Text>
-        </View>
-        <View style={styles.total}>
-          <Text style={styles.date}>{record.date}</Text>
-          <Text style={styles.price}>${record.total}</Text>
-        </View>
-      </View>
+      <ListItem
+        key={sectionID}
+        title={rowData.name}
+        subtitle={rowData.subtitle}
+      />
     );
   }
 
   render() {
-      return (
-      <View style={styles.mainContainer}>
-        <Text style={styles.title}>Sales</Text>
+    return (
+      <List style={styles.mainContainer}>
         <ListView
           dataSource={this.state.dataSource}
           renderRow={this.renderRow}
         />
-      </View>
+      </List>
     );
   }
 }
