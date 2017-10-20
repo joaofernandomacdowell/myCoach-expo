@@ -16,7 +16,7 @@ export default (state = INITIAL_STATE, action) => {
       const { type, selectedOption } = action.payload;
       return {
         ...state,
-        profile: updateProfile(state.profile, type, selectedOption)
+        profile: setProfile(state.profile, type, selectedOption)
       };
     case FIRST_NAME_CHANGED:
       return { ...state, firstName: action.payload };
@@ -27,6 +27,7 @@ export default (state = INITIAL_STATE, action) => {
   }
 };
 
-const updateProfile = (currProfile, newType, newOption) => {
-  return {...currProfile, [newType]: newOption};
+
+const setProfile = (currProfile, newType, newOption) => {
+  return { ...currProfile, [newType]: newOption };
 }
