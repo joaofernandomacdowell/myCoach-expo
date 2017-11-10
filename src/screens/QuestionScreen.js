@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { View } from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { updateQuestionAndOptions, updateProfile } from '../actions';
 import { ScreenStyles } from '../styles/constants';
 
@@ -20,7 +21,7 @@ class QuestionScreen extends Component {
       this.props.updateQuestionAndOptions();
     } else {
       this.props.updateProfile({ type, selectedOption });
-      this.props.navigation.navigate('register');
+      Actions.register();
     }
   }
 
