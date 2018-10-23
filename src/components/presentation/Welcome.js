@@ -1,3 +1,4 @@
+/* eslint-disable global-require */
 import React, { Component } from 'react';
 import { View, Image, Text, TouchableOpacity } from 'react-native';
 import {
@@ -6,12 +7,12 @@ import {
   loginButtonStyles,
   startButtonStyles
 } from '../../styles/welcome';
+import { myCoachLogo } from '../../../assets';
 
 import WelcomeText from './WelcomeText';
 import ButtonContainer from './ButtonContainer';
 
-
-class Welcome extends Component {
+export default class Welcome extends Component {
   render() {
     const { image } = imageStyles;
     const { container } = mainViewStyles;
@@ -23,7 +24,7 @@ class Welcome extends Component {
         <View>
           <Image
             style={image}
-            source={require('../../../resources/img/mycoach-logo.png')}
+            source={myCoachLogo}
             resizeMode="contain"
           />
         </View>
@@ -55,5 +56,3 @@ class Welcome extends Component {
     );
   }
 }
-
-export default Welcome;
