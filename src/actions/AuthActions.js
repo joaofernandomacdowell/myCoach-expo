@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import {
   EMAIL_CHANGED,
   PASSWORD_CHANGED,
@@ -16,18 +17,18 @@ export const passwordChanged = (text) => ({
   payload: text
 });
 
-export const createUser = ({ email, password, name, profile }) => (
-  (dispatch) => {
+export const createUser = ({ email, password, name, profile }) => {
+  return (dispatch) => {
     dispatch({ type: LOGIN_USER });
 
     firebase.auth().createUserWithEmailAndPassword(email, password)
       .then(() => saveNameAndProfile(name, profile))
+        .then(() => Actions.homeScreen())
       .catch((error) => {
-        console.log(error);
         createUserFail(dispatch, error.message);
       });
-  }
-);
+  };
+};
 
 // TODO: add catch statment in saveNameAndProfile Promise
 const saveNameAndProfile = (name, profile) => {

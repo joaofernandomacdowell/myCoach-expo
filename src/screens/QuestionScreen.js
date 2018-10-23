@@ -21,7 +21,7 @@ class QuestionScreen extends Component {
       this.props.updateQuestionAndOptions();
     } else {
       this.props.updateProfile({ type, selectedOption });
-      Actions.register();
+      Actions.registerScreen();
     }
   }
 
