@@ -1,18 +1,10 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
-import { FormLabel, FormInput } from 'react-native-elements';
-import { connect } from 'react-redux';
+import { View, TextInput } from 'react-native';
+import { FormLabel } from 'react-native-elements';
+import firebase from 'firebase';
+
 import { ScreenStyles } from '../styles/constants';
 import { inputStyles } from '../styles/common';
-import {
-  emailChanged,
-  passwordChanged,
-  createUser,
-  createProfile,
-  firstNameChanged,
-  lastNameChanged
-} from '../actions';
-
 import {
   Card,
   CardSection,
@@ -21,33 +13,63 @@ import {
   LargeText
 } from '../components/common';
 
+const RETRY_TIMEOUT = 3000;
+export default class RegisterScreen extends Component {
+  constructor(props) {
+    super(props);
 
-class RegisterScreen extends Component {
-  componentDidMount() {
-    console.log(this.props.profile);
+    this.state = {
+      email: '',
+      password: '',
+      firstName: '',
+      lastName: '',
+      name: '',
+      profile: props.navigation.getParam('profile', ''),
+    };
   }
 
-  onEmailChange = (text) => {
-    this.props.emailChanged(text);
+  onEmailChange = input => {
+    this.setState({ email: input });
   }
 
-  onPasswordChange = (text) => {
-    this.props.passwordChanged(text);
+  onPasswordChange = input => {
+    this.setState({ password: input });
   }
 
-  onFirstNameChange = (text) => {
-    this.props.firstNameChanged(text);
+  onFirstNameChange = input => {
+    this.setState({ firstName: input });
   }
 
-  onLastNameChange = (text) => {
-    this.props.lastNameChanged(text);
+  onLastNameChange = input => {
+    this.setState({ lastName: input });
   }
 
-  onButtonPress = () => {
-    const { email, password, profile, firstName, lastName } = this.props;
-    const name = `${firstName} ${lastName}`;
+  onButtonPress() {
+    const { firstName, lastName } = this.state;
+    const fullName = `${firstName} ${lastName}`;
+    this.setState({ name: fullName }, this.createUser);
+  }
 
-    this.props.createUser({ email, password, name, profile });
+  async createUser() {
+    const { email, password, profile, name } = this.state;
+    try {
+      await firebase.auth().createUserWithEmailAndPassword(email, password);
+      this.pushNameAndProfile(name, profile);
+      console.log('Success! Go to Home!');
+      this.props.navigation.navigate('Home');
+    } catch (e) {
+      console.log('error', e);
+      setTimeout(() => { this.createUser(); }, RETRY_TIMEOUT);
+    }
+  }
+
+  pushNameAndProfile(name, profile) {
+    const { currentUser } = firebase.auth();
+
+    firebase.database().ref(`/users/${currentUser.uid}/name`)
+      .push(name);
+    firebase.database().ref(`/users/${currentUser.uid}/profile`)
+      .push(profile);
   }
 
   renderErrorMessage() {
@@ -58,7 +80,6 @@ class RegisterScreen extends Component {
 
   render() {
     const { label, input, container } = inputStyles;
-
     return (
       <View style={ScreenStyles}>
         <LargeText>Register with Email</LargeText>
@@ -67,49 +88,57 @@ class RegisterScreen extends Component {
           {/* First Name */}
           <FormLabel labelStyle={label}>First Name</FormLabel>
           <CardSection>
-            <FormInput
+            <TextInput
               containerStyle={container}
-              inputStyle={input}
+              style={input}
               onChangeText={this.onFirstNameChange}
               value={this.props.firstName}
+              keyboardType="email-address"
+              textContentType="username"
             />
           </CardSection>
 
           {/* Last Name */}
           <FormLabel labelStyle={label}>Last Name</FormLabel>
           <CardSection>
-            <FormInput
+            <TextInput
               containerStyle={container}
-              inputStyle={input}
+              style={input}
               onChangeText={this.onLastNameChange}
               value={this.props.lastName}
+              keyboardType="email-address"
+              textContentType="username"
             />
           </CardSection>
 
           {/* Email */}
           <FormLabel labelStyle={label}>Email</FormLabel>
           <CardSection>
-            <FormInput
+            <TextInput
               containerStyle={container}
-              inputStyle={input}
+              style={input}
               onChangeText={this.onEmailChange}
               value={this.props.email}
+              keyboardType="email-address"
             />
           </CardSection>
 
           {/* Password */}
           <FormLabel labelStyle={label}>Password</FormLabel>
           <CardSection>
-            <FormInput
+            <TextInput
               containerStyle={container}
-              inputStyle={input}
+              style={input}
               secureTextEntry
               onChangeText={this.onPasswordChange}
               value={this.props.password}
+              keyboardType="default"
+              textContentType="password"
+              secureTextEntry
             />
           </CardSection>
 
-          <Button onPress={this.onButtonPress}>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Register
           </Button>
 
@@ -120,19 +149,3 @@ class RegisterScreen extends Component {
     );
   }
 }
-
-const mapStateToProps = ({ auth, userData }) => {
-  const { email, password, error, loading } = auth;
-  const { profile, firstName, lastName } = userData;
-
-  return { email, password, error, loading, profile, firstName, lastName };
-};
-
-export default connect(mapStateToProps, {
-  emailChanged,
-  passwordChanged,
-  firstNameChanged,
-  lastNameChanged,
-  createUser,
-  createProfile
-})(RegisterScreen);

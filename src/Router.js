@@ -1,6 +1,9 @@
 import React from 'react';
 import { Image } from 'react-native';
-import { createBottomTabNavigator } from 'react-navigation';
+import {
+  createStackNavigator,
+  createBottomTabNavigator,
+} from 'react-navigation';
 
 import {
   homeIcon,
@@ -12,13 +15,15 @@ import { Colors } from './styles/constants';
 import HomeScreen from './screens/HomeScreen';
 import WorkoutScreen from './screens/WorkoutScreen';
 import BadHabitsScreen from './screens/BadHabitsScreen';
-// import RegisterScreen from './screens/RegisterScreen';
-// import QuestionScreen from './screens/QuestionScreen';
-// import WelcomeScreen from './screens/WelcomeScreen';
+import RegisterScreen from './screens/RegisterScreen';
+import QuestionScreen from './screens/QuestionScreen';
+import WelcomeScreen from './screens/WelcomeScreen';
+
 
 const { lightGreen, white, darkBlue } = Colors;
 
-const Screens = {
+/* TabNavigation */
+const TabNavigationScreens = {
   Home: {
     screen: HomeScreen,
     navigationOptions: {
@@ -48,8 +53,8 @@ const Screens = {
   }
 };
 
-// navOptions
-const navOptions = {
+// Tab nav options
+const tabNavOptions = {
   navigationOptions: {
     tabBarVisible: true,
   },
@@ -65,13 +70,42 @@ const navOptions = {
   },
 };
 
-// router config
-const routerConfig = {
+// Tab router config
+const tabRouterConfig = {
   initialRouteName: 'Home',
   order: ['Home', 'Workout', 'BadHabits'],
-  ...navOptions,
+  ...tabNavOptions,
 };
 
-const Router = createBottomTabNavigator(Screens, routerConfig);
+const TabNavigator = createBottomTabNavigator(TabNavigationScreens, tabRouterConfig);
+/* end: TabNavigation */
+
+/* StackNavigation */
+const StackNavigationScreens = {
+  Welcome: { screen: WelcomeScreen },
+  Question: { screen: QuestionScreen },
+  Register: { screen: RegisterScreen },
+  Home: TabNavigator,
+};
+
+// Stack nav options
+const stackNavOptions = {
+  navigationOptions: {
+    header: null,
+  },
+};
+
+// Stack router config
+const stackRouterConfig = {
+  initialRouteName: 'Welcome',
+  ...stackNavOptions,
+};
+/* end: StackNavigation */
+
+
+const StackNavigator = createStackNavigator(StackNavigationScreens, stackRouterConfig);
+
+const Router = StackNavigator;
+// const Router = createBottomTabNavigator(TabNavigationScreens, routerConfig);
 
 export default Router;
